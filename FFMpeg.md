@@ -16,21 +16,6 @@ Where `setpts=0.5*PTS` is doubling and `setpts=0.25*PTS` is multiplying by 4 (1/
 ffmpeg -i output.mp4 -filter_complex "[0:v]reverse,fifo[r];[0:v][r] concat=n=2:v=1 [v]" -map "[v]" output2.mp4
 ```
 
-### Repeat 2 times
-
-```
-ffmpeg -i output2.mp4 -filter_complex "[0:v]reverse,fifo[r];[0:v][r] concat=n=2:v=1 [v]" -map "[v]" output3.mp4
-```
-
-```
-ffmpeg -i output3.mp4 -filter_complex "[0:v]reverse,fifo[r];[0:v][r] concat=n=2:v=1 [v]" -map "[v]" output4.mp4
-```
-
-### Accelerate again
-
-```
-ffmpeg -i output4.mp4 -filter:v "setpts=0.5*PTS" output5.mp4
-```
 
 ### @TODO
 
